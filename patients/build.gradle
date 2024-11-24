@@ -1,0 +1,48 @@
+plugins {
+  id 'java'
+  id 'application'
+  id 'idea'
+}
+
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+  implementation (
+    'org.eclipse.jetty.aggregate:jetty-all:9.4.24.v20191120',
+    'org.freemarker:freemarker:2.3.29',
+    'org.xerial:sqlite-jdbc:3.28.0'
+  )
+}
+
+application {
+  mainClass = 'IKT222.patients.AppServer'
+}
+
+idea {
+  module {
+    outputDir file('build/classes/main')
+    testOutputDir file('build/classes/test')
+  }
+}
+
+task submission(type: Zip) {
+  group = 'Submission'
+  description = 'Generates Zip archive suitable for submission.'
+
+  archiveFileName = 'source code.zip'
+  destinationDirectory = project.rootDir
+
+  from("$project.rootDir") {
+    exclude 'source code.zip', 'build', '.git', '.gradle', '.idea'
+  }
+
+  doFirst {
+    assert file("report.pdf").exists()
+  }
+
+  doLast {
+    logger.warn("source code.zip generated.")
+  }
+}
