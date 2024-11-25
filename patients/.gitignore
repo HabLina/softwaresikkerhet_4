@@ -1,1 +1,27 @@
-/patients/bin/
+# Gradle build folder
+.gradle/
+
+# Build output folders
+bin/
+build/
+
+# Temporary files created during compilation
+*.class
+
+# Logs
+*.log
+
+# VS Code-specific files
+.vscode/
+
+# IDE-specific files
+*.iml
+.idea/
+
+# OS-generated files (common across systems)
+.DS_Store
+Thumbs.db
+
+# Exclude environment or sensitive configuration files
+.env
+
